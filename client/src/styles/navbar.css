@@ -1,0 +1,32 @@
+header {
+  width: auto;
+  height: 150px;
+  background: linear-gradient(90deg, rgb(127, 221, 12), rgb(11, 90, 207));
+}
+
+nav.navbar {
+  height: 100%;
+  float: left;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+nav.disabled {
+  display: none;
+}
+
+nav.active {
+  display: inline-flex;
+}
+
+.link {
+  width: 100%;
+  background-color: rgba(107, 104, 104, 0.5);
+  color: #eeff00;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}

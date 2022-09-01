@@ -1,0 +1,167 @@
+/** start global style **/
+.container-loading {
+  width: 100%;
+  height: 650px;
+	padding: 0 calc(1.5rem * 0.5);
+	margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+	width: 100%;
+	padding: 0 calc(1.5rem * 0.5) 0 0;
+	margin: 0 auto;
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50px;
+	background: #2b1313dc;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	border: 1px solid;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: .3s ease all;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+  opacity: 80%;
+}
+
+.btn span {
+	position: relative;
+	z-index: 2;
+	transition: .3s ease all;
+}
+
+.btn.btn-access span {
+	transition: .4s ease-in-out all;
+	position: absolute;
+	left: 20%;
+}
+
+.btn.btn-access .icono {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	z-index: 2;
+	left: -40px;
+	transition: .3s ease-in-out all;
+	opacity: 0;
+}
+
+.btn.btn-access svg {
+	color: #fff;
+	width: 35px;
+	height: 35px;
+}
+
+.btn.btn-access:hover {
+	background: #2f9b05;
+}
+
+.btn.btn-access:hover .icono {
+	left: calc(100% - 50px);
+	opacity: 1;
+}
+
+.btn.btn-access:hover span {
+	left: 20px;
+}
+
+/* .btn:hover {
+  background-color: #ff5e00;
+  color: #000;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-access {
+  background-color: #292929;
+  color: #fff;
+} */
+
+.filters {
+  width: 100%;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.sort {
+  width: 100%;
+  display: inline-grid;
+  gap: 5px;
+  justify-items: start;
+}
+
+.filters select {
+  font-size: 15px;
+  font-family: inherit;
+  color: #292929;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #292929;
+  border-radius: 5px;
+  outline: none;
+}
+/** end global style **/
+
+/** start Paginate style **/
+.pagination {
+  width: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.pagination ul {
+  width: 80%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul .page {
+  background-color: #fff;
+  color: #2b2eff;
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  cursor: pointer;
+}
+
+.pagination ul .page:hover {
+  background-color: #2b2eff;
+  color: #fff;
+}
+
+.pagination ul .page:active {
+  background-color: #2b2eff;
+  color: #fff;
+}
+/** end Paginate style **/
+
+/** start OrderFilter style **/
+.layout-order {
+  margin: auto;
+  display: inline-flex;
+}
+
+.layout-order div {
+  display: inline-flex;
+  justify-content: left;
+}
+/** end OrderFilter style **/
