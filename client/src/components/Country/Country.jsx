@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../styles/recipe.css';
+import '../../styles/country.css';
 
 const Country = ({id, flag, name, continent, population}) => {
   return (
@@ -7,7 +7,7 @@ const Country = ({id, flag, name, continent, population}) => {
       <div className="target">
         <img src={flag} alt="" />
         <div className="layout-score">
-          <span className="population">{healthScore}</span>
+          <span className="population">{population}</span>
           <span className="tooltiptext">Población &roarr; {population} habitantes</span>
         </div>
       </div>

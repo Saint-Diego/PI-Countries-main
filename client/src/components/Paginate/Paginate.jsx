@@ -1,4 +1,4 @@
-import React from 'react';
+import '../../styles/pagination.css';
 
 const Paginate = ({currentPage, setCurrentPage, totalRecipes, recipePerPage}) => {
   const totalPages = Math.ceil(totalRecipes / recipePerPage);

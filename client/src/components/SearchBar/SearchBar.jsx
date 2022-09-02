@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCountryByName } from '../../slices/index';
+import iconoSearch from '../../assets/buscar.png';
 
 const SearchBar = () => {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ const SearchBar = () => {
     setName(refInput.current.value);
   }
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchCountryByName(name));
     setName("");
@@ -19,10 +20,18 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <input type="text" ref={refInput} value={name} placeholder='Buscar...' onChange={handleChange}/>
-      <button onClick={handleClick}>Buscar</button>
-    </div>
+    <form className="form-inline" onSubmit={handleSubmit}>
+      <div className="input-group">
+        <input className="form-control" type="search" ref={refInput} value={name} placeholder='Buscar' onChange={handleChange}/>
+        <div className="input-group-btn">
+          <button className="form-control" type="submit">
+            <div>
+              <img src={iconoSearch} alt="" width="20" height="20" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
   )
 }
 

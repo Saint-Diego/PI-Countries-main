@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrderCountries, countrySelector } from '../../slices/index';
+import '../../styles/orderfilter.css';
 
 const OrderFilter = () => {
   const [option, setOption] = useState('');

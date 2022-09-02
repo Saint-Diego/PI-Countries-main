@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/tag.css';
+import '../../styles/tag.css';
 
 const Tag = ({name, onClick}) => {
   return (

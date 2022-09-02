@@ -1,0 +1,34 @@
+.pagination {
+  width: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.pagination ul {
+  width: 80%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul .page {
+  background-color: #fff;
+  color: #2b2eff;
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  cursor: pointer;
+}
+
+.pagination ul .page:hover {
+  background-color: #2b2eff;
+  color: #fff;
+}
+
+.pagination ul .page:active {
+  background-color: #2b2eff;
+  color: #fff;
+}

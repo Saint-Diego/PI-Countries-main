@@ -1,9 +1,9 @@
-import Recipes from '../Recipes/Recipes';
+import Countries from '../Countries/Countries';
 
 const Home = () => {
   return (
     <div className="container">
-      <Recipes/>
+      <Countries/>
     </div>
   )
 }

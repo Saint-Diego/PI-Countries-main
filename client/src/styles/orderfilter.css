@@ -1,0 +1,9 @@
+.layout-order {
+  margin: auto;
+  display: inline-flex;
+}
+
+.layout-order div {
+  display: inline-flex;
+  justify-content: left;
+}
