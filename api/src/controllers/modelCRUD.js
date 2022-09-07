@@ -1,6 +1,7 @@
+const axios = require('axios');
 const { Country, Op } = require('../db');
 
-const URL_API = `https://restcountries.com/v3.1/all`;
+const URL_API = 'https://restcountries.com/v3/all';
 
 class ModelCRUD {
   constructor(modelo) {
@@ -10,20 +11,21 @@ class ModelCRUD {
   downloadCountries = async () => {
     try {
       const { data } = await axios.get(URL_API);
-      const countries = await data?.map((country) => (
+      const countries = data?.map((country) => (
         { 
           id: country.cca3,
-          name: country.name.common, 
-          flag: country.flags[0], 
+          nameEn: country.name.common, 
+          nameEs: country.translations.spa.common,
+          flag: country.flags[1], 
           continent: country.continents[0], 
-          capital: country.capital[0],
-          subregion: country.subregion, 
+          capital: country.capital ? country.capital[0] : "Sin capital",
+          subregion: country.subregion ? country.subregion : "Sin subregión", 
           area: country.area,
           population: country.population,
         }
       ));
       await this.model.bulkCreate(countries);
-      return await this.model.findAll();
+      return countries;
     } catch (error) {
       throw new TypeError(error.message);
     }
@@ -38,7 +40,7 @@ class ModelCRUD {
         if (!data.length) res.status(404).send('Country not found!');
       } else {
         data = await this.model.findAll();
-        if (!data.length) data = await this.downloadCountries(next);
+        if (!data.length) data = await this.downloadCountries();
       }
       res.send(data);
     } catch (error) {
@@ -60,13 +62,13 @@ class ModelCRUD {
   getByName = async (nameCountry) => {
     const condition = {
       where: {
-        name: {
+        nameEs: {
           [Op.iLike]: `%${nameCountry}%`
         }
       }
     };
     try {
-      return await this.model.finAll(condition);
+      return await this.model.findAll(condition);
     } catch (error) {
       throw new TypeError(error.message);
     }

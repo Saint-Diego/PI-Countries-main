@@ -1,8 +1,8 @@
-.disabled {
+div.disabled {
   display: none;
 }
 
-.active {
+div.active {
   display: block;
 }
 
@@ -25,7 +25,7 @@
 .navbar .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 400;
   color: #000;
   text-decoration: none;

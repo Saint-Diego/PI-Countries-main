@@ -6,7 +6,7 @@ const NavBar = () => {
   const location = useLocation();
 
   return (
-    <div className={`${location.pathname === '/' ? 'disabled' : 'active'}`}>
+    <div className={`${location.pathname !== '/' ? 'active' : 'disabled'}`}>
       <header className="header">
       </header>
       <nav className="navbar">

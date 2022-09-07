@@ -12,7 +12,11 @@ module.exports = (sequelize) => {
         len: 3,
       }
     },
-    name: {
+    nameEn: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    nameEs: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,8 +32,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    subRegion: DataTypes.STRING,
-    area: DataTypes.DOUBLE,
+    subregion: DataTypes.STRING,
+    area: DataTypes.INTEGER,
     population: DataTypes.INTEGER,
   },
   {

@@ -5,11 +5,8 @@ const Country = ({id, flag, name, continent, population}) => {
   return (
     <div className="country">
       <div className="target">
-        <img src={flag} alt="" />
-        <div className="layout-score">
-          <span className="population">{population}</span>
-          <span className="tooltiptext">Población &roarr; {population} habitantes</span>
-        </div>
+        <img src={flag} alt={name} />
+        <span className="tooltiptext">Población {Intl.NumberFormat().format(population)} habitantes</span>
       </div>
       <div className="detail">
         <h5>{name}</h5>

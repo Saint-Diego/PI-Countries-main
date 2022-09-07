@@ -19,7 +19,7 @@ const countrySlice = createSlice({
     getCountry: (state, {payload}) => {
       state.country = payload
     },
-    filterCountriesByContinents: (state, {payload}) => {
+    filterCountriesByContinent: (state, {payload}) => {
       const {countries, continent} = payload
       let filter = null;
       if (continent !== 'All') filter = countries.filter((c) => c.continent === continent);
@@ -61,7 +61,7 @@ const countrySlice = createSlice({
 export const {
   getCountries, 
   getCountry,
-  filterCountriesByContinents,
+  filterCountriesByContinent,
   filterCountriesByActivity,
   sortCountriesByString,
   sortCountriesByInt,

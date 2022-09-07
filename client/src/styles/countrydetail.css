@@ -1,3 +1,36 @@
+.layout-country-detail {
+	background: linear-gradient(360deg, #dadad8c7, #c6c2bcc7);
+	width: 60%;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+img {
+	width: 100%;
+}
+
+.country-detail {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.country-detail h4 {
+	margin: auto 0;
+}
+
+.layout-country-detail .country-detail {
+	width: 100%;
+	text-align: justify;
+}
+
 .layout-activity {
-    box-shadow: inset 0 0 0 2px #000;
+	display: block;
+}
+
+.layout-country-activity {
+	border-radius: 1rem;
+	box-shadow: 0 0 20px #c3c3c3;
 }
