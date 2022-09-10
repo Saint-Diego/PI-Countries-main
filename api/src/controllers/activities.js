@@ -5,6 +5,15 @@ class ActivityController extends ModelCRUD {
   constructor(model) {
     super(model);
   }
+
+  getActivities = async (req, res, next) => {
+    try {
+      const result = await this.model.findAll();
+      res.send(result.length ? result : []);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 const activityController = new ActivityController(Activity);

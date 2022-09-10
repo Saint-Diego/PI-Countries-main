@@ -6,65 +6,71 @@ export const initialState = {
   countries: [],
   copyCountries: [],
   country: {},
-  page: 1,
+  activities: [],
+  show: false,
+  loading: false,
 };
 
 const countrySlice = createSlice({
   name: 'country',
   initialState,
   reducers: {
+    loadingCountries: (state) => {
+      state.loading = true
+    },
     getCountries: (state, {payload}) => {
       state.copyCountries = state.countries = payload
+      state.loading = false
     },
     getCountry: (state, {payload}) => {
       state.country = payload
     },
+    getActivities: (state, {payload}) => {
+      state.activities = payload
+    },
     filterCountriesByContinent: (state, {payload}) => {
-      const {countries, continent} = payload
-      let filter = null;
-      if (continent !== 'All') filter = countries.filter((c) => c.continent === continent);
-      else filter = state.copyCountries
-      state.countries = filter
+      state.countries = state.copyCountries.filter((c) => c.continent === payload)
     },
     filterCountriesByActivity: (state, {payload}) => {
-      const {countries, activity} = payload
-      let filter = null;
-      if (activity !== 'All') filter = countries.map((c) => 
-        c.activity.find(({name}) => name === activity)
-      );
-      else filter = state.copyCountries
-      state.countries = filter
+      const filter = state.copyCountries.map((c) => 
+        c.activities?.find(({name}) => name === payload)
+      )
+      state.countries = filter.filter((c) => c !== undefined)
     },
     sortCountriesByString: (state, {payload}) => {
-      const { countries, sort } = payload
       let paises = null
-      if (sort === 'asc') {
-        paises = countries.slice().sort((a, b) => a.name.localeCompare(b.name))
+      if (payload === 'asc') {
+        paises = state.copyCountries.slice().sort((a, b) => a.nameEn.localeCompare(b.nameEn))
       } else {
-        paises = countries.slice().sort((a, b) => b.name.localeCompare(a.name))
+        paises = state.copyCountries.slice().sort((a, b) => b.nameEn.localeCompare(a.nameEn))
       }
       state.countries = paises
     },
     sortCountriesByInt: (state, {payload}) => {
-      const { countries, sort } = payload
       let paises = null
-      if (sort === 'asc') {
-        paises = countries.slice().sort((a, b) => a.population - b.population)
+      if (payload === 'asc') {
+        paises = state.copyCountries.slice().sort((a, b) => a.population - b.population)
       } else {
-        paises = countries.slice().sort((a, b) => b.population - a.population)
+        paises = state.copyCountries.slice().sort((a, b) => b.population - a.population)
       }
       state.countries = paises
+    },
+    showAdvanced: (state, {payload}) => {
+      state.show = payload
     },
   }
 })
 
 export const {
+  loadingCountries,
   getCountries, 
   getCountry,
+  getActivities,
   filterCountriesByContinent,
   filterCountriesByActivity,
   sortCountriesByString,
   sortCountriesByInt,
+  showAdvanced,
 } = countrySlice.actions;
 
 export const countrySelector = state => state;
@@ -76,6 +82,7 @@ const URL_ACTIVITY = 'http://localhost:3001/api/activities';
 
 export const fetchCountries = () => async dispatch => {
   try {
+    dispatch(loadingCountries());
     const {data} = await axios(URL_COUNTRY);
     dispatch(getCountries(data));
   } catch (e) {
@@ -83,34 +90,41 @@ export const fetchCountries = () => async dispatch => {
   }
 };
 
-export const fetchFilterCountriesByContinent = (countries, continent) => dispatch => {
+export const fetchFilterCountries = (option, value) => dispatch => {
   try {
-    dispatch(filterCountriesByContinent({countries, continent}));
-  } catch (e) {
-    showAlert('Opps!', e.message, 'error');
-  }
-};
-
-export const fetchFilterCountriesByActivity = (countries, activity) => dispatch => {
-  try {
-    dispatch(filterCountriesByActivity({countries, activity}));
-  } catch (e) {
-    showAlert('Opps!', e.message, 'error');
-  }
-};
-
-export const fetchOrderCountries = (countries, {option, sort}) => dispatch => {
-  switch (option) {
-    case 'a-z':
-      dispatch(sortCountriesByString({countries,sort}));
-      break;
-
-    case 'poblacion':
-      dispatch(sortCountriesByInt({countries,sort}));
-      break;
+    switch (option) {
+      case 'continent':
+        dispatch(filterCountriesByContinent(value));
+        break;
   
-    default:
-      break;
+      case 'activity':
+        dispatch(filterCountriesByActivity(value));
+        break;
+    
+      default:
+        break;
+    }
+  } catch (e) {
+    showAlert('Opps!', e.message, 'error');
+  }
+};
+
+export const fetchOrderCountries = (option, sort) => dispatch => {
+  try {
+    switch (option) {
+      case 'name':
+        dispatch(sortCountriesByString(sort));
+        break;
+  
+      case 'population':
+        dispatch(sortCountriesByInt(sort));
+        break;
+    
+      default:
+        break;
+    }
+  } catch (e) {
+    showAlert('Opps!', e.message, 'error');
   }
 };
 
@@ -132,6 +146,15 @@ export const fetchCountryByName = (name) => async dispatch => {
   }
 };
 
+export const fetchActivities = () => async dispatch => {
+  try {
+    const {data} = await axios(URL_ACTIVITY);
+    dispatch(getActivities(data));
+  } catch (e) {
+    return showAlert('Opps!', e.response.data, 'error');
+  }
+};
+
 export const fetchCreateActivity = (activity) => async () => {
   try {
     const {data} = await axios.post(URL_ACTIVITY, activity);
@@ -140,3 +163,11 @@ export const fetchCreateActivity = (activity) => async () => {
     return showAlert('Opps!', e.response.data, 'error');
   }
 };
+
+export const changeOptionAdvanced = (value) => dispatch => {
+  try {
+    dispatch(showAdvanced(value));
+  } catch (e) {
+    return showAlert('Opps!', e.message, 'error');
+  }
+}

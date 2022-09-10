@@ -1,0 +1,43 @@
+form.form-activity {
+	background: #c5c5c5;
+	width: 450px;
+	margin: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px #00000038;
+}
+
+.form-activity button {
+	padding: 5px 10px;
+}
+
+.fields {
+	display: flex;
+	margin: 5px auto;
+	text-align: left;
+	justify-content: flex-start;
+	align-items: center;
+	grid-column-gap: 10px;
+}
+
+.fields label {
+	width: 200px;
+	font-size: large;
+	font-weight: 400;
+}
+
+.fields input, .fields select {
+	border-radius: 5px;
+}
+
+.tags-input-container {
+	visibility: visible;
+	margin: 5px 0 10px;
+	padding: 5px;
+	border: 2px solid #a5a2a2;
+	border-radius: 5px;
+}
+
+.tags-input-container.hide {
+	visibility: hidden;
+}

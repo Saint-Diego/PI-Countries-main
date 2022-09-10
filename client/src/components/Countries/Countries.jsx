@@ -2,22 +2,28 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCountries, countrySelector } from '../../slices/index';
 import '../../styles/countries.css';
-import Paginate from '../Paginate/Paginate';
+import '../../styles/pagination.css';
 import Country from '../Country/Country';
+import Paginate from '../Paginate/Paginate';
 
 const FIRST_PAGE = 9;
 const PER_PAGE = 10;
-const GROUP_PAGE = 5;
+const GROUP_PAGE = 10;
 
 const Countries = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const {countries} = useSelector(countrySelector);
+  const { loading, countries } = useSelector(countrySelector);
   const dispatch = useDispatch();
-  const totalCountries = countries.length - FIRST_PAGE;
+  const totalCountries = countries.length;
   
   useEffect(() => {
     dispatch(fetchCountries());
   }, [dispatch]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    console.log('countries',countries)
+  }, [countries])
 
   const getPaginateData = () => {
     let startIndex = 0;
@@ -34,19 +40,24 @@ const Countries = () => {
 
   return (
     <div className="main-layout">
-      {
-        totalCountries > PER_PAGE &&
-        <Paginate
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          size={totalCountries}
-          pageLimit={GROUP_PAGE}
-          dataLimit={PER_PAGE}
-        />  
-      }
-      <div className="countries">
+      <div className="pagination">
         {
-          totalCountries > 0 ?
+          totalCountries > FIRST_PAGE &&
+          <Paginate
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            size={totalCountries - FIRST_PAGE}
+            pageLimit={GROUP_PAGE}
+            dataLimit={PER_PAGE}
+          />  
+        }
+      </div>
+      <div className={`${totalCountries === 0 ? 'loading-countries' : 'countries'}`}>
+        {
+          loading ?
+          <h3>Cargando...</h3>
+          : 
+          totalCountries ?
           getPaginateData().map((data) => 
             <Country 
               key={data.id} 
@@ -56,10 +67,8 @@ const Countries = () => {
               continent={data.continent} 
               population={data.population}/>
           )
-          :
-          <h3>No Countries to display</h3>
+          : <h3>No hay países para mostrar</h3>
         }
-        
       </div>
     </div>
   )

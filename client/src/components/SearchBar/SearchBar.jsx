@@ -1,13 +1,11 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { fetchCountryByName } from '../../slices/index';
 import iconoSearch from '../../assets/buscar.png';
 
 const SearchBar = () => {
   const [name, setName] = useState("");
   const refInput = useRef(null);
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const handleChange = () => {
@@ -22,7 +20,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form className={`form-inline ${location.pathname === '/home' ? 'active' : 'disabled'}`} onSubmit={handleSubmit}>
+    <form className="form-inline" onSubmit={handleSubmit}>
       <div className="input-group">
         <input className="form-control" type="search" ref={refInput} value={name} placeholder='Buscar' onChange={handleChange}/>
         <div className="input-group-btn">

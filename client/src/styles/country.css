@@ -11,10 +11,6 @@
 	position: relative;
 }
 
-.detail {
-	height: 25%;
-}
-
 .country h5, p {
 	font-size: 15px;
 	margin: 10px 0;
@@ -54,7 +50,15 @@
 	border-color: #555555b8 transparent transparent transparent;
 }
 
-.target img:hover + .tooltiptext {
+.target img:hover ~ .tooltiptext {
 	visibility: visible;
 	opacity: 1;
 }
+
+.detail {
+	height: 25%;
+}
+
+/* .more-detail {
+
+} */

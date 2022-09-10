@@ -11,25 +11,9 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
     },
     name: DataTypes.STRING,
-    difficulty: {
-      type: DataTypes.INTEGER,
-      validate: {
-        min: 1,
-        max: 5,
-      },
-    },
-    length: {
-      type: DataTypes.INTEGER,
-      get() {
-        return `${length} horas`
-      }
-    },
-    season: {
-      type: DataTypes.STRING,
-      validate: {
-        isIN: [['Verano', 'Otoño', 'Invierno', 'Primavera']],
-      },
-    },
+    difficulty: DataTypes.INTEGER,
+    length: DataTypes.INTEGER,
+    season: DataTypes.STRING,
   },
   {
     timestamps: false,

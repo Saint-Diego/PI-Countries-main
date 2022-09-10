@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCountryById, countrySelector } from '../../slices/index';
 import '../../styles/countrydetail.css';
+import imageCard from '../../assets/note_640.png';
 
 const CountryDetail = () => {
   const { idPais } = useParams();
@@ -15,55 +16,66 @@ const CountryDetail = () => {
 
   return (
     <div className="container">
-      {
-        country ?
-        <div className="layout-country-detail">
-          <img src={country.flag} alt={country.nameEn} />
-          <div className="country-detail">
-            <h4>Nombre</h4>
-            <span>{country.nameEn}</span>
-          </div>
-          <div className="country-detail">
-            <h4>Código de país</h4>
-            <span>{country.id}</span>
-          </div>
-          <div className="country-detail">
-            <h4>Continente</h4>
-            <span>{country.continent}</span>
-          </div>
-          <div className="country-detail">
-            <h4>Capital</h4>
-            <span>{country.capital}</span>
-          </div>
-          <div className="country-detail">
-            <h4>Subregión</h4>
-            <span>{country.subregion}</span>
-          </div>
-          <div className="country-detail">
-            <h4>Área</h4>
-            <span>{Intl.NumberFormat('es',{style: 'unit', unit: 'kilometer'}).format(country.area)}²</span>
-          </div>
-          <div className="country-detail">
-            <h4>Población</h4>
-            <span>{Intl.NumberFormat().format(country.population)} habitantes</span>
-          </div>
-          <div className="layout-activity">
-            <h4>Actividades turísticas:</h4>
-            {
-              country.activity?.map(({id, name, difficulty, length, season}) => 
-                <div key={id} className="layout-country-activity">
-                  <h5>Nombre: {name}</h5>
-                  <h5>Dificultad: {difficulty}</h5>
-                  <h5>Duración: {length}</h5>
-                  <h5>Temporada: {season}</h5>
-                </div>
-              )
-            }
-          </div>
+      <div className="layout-country-detail">
+        <img src={country.flag} alt={country.nameEn} />
+        <div className="country-detail">
+          <h4>Nombre</h4>
+          <span>{country.nameEn}</span>
         </div>
-        :
-        <p>Cargando...</p>
-        }
+        <div className="country-detail">
+          <h4>Código de país</h4>
+          <span>{country.id}</span>
+        </div>
+        <div className="country-detail">
+          <h4>Continente</h4>
+          <span>{country.continent}</span>
+        </div>
+        <div className="country-detail">
+          <h4>Capital</h4>
+          <span>{country.capital}</span>
+        </div>
+        <div className="country-detail">
+          <h4>Subregión</h4>
+          <span>{country.subregion}</span>
+        </div>
+        <div className="country-detail">
+          <h4>Área</h4>
+          <span>{Intl.NumberFormat('es',{style: 'unit', unit: 'kilometer'}).format(country.area)}²</span>
+        </div>
+        <div className="country-detail">
+          <h4>Población</h4>
+          <span>{Intl.NumberFormat().format(country.population)} habitantes</span>
+        </div>
+        <hr/>
+        <div className="title-activity">
+          <h4>Actividades turísticas:</h4>
+        </div>
+        <div className="layout-activity">
+          {
+            country.activities?.map(({id, name, difficulty, length, season}) => 
+              <div key={id} className="layout-country-activity">
+                <img src={imageCard} alt="thumbnails.png"/>
+                <div>
+                  <h5>Nombre:</h5>
+                  <span>{name}</span>
+                </div>
+                <div>
+                  <h5>Dificultad:</h5>
+                  <span>{difficulty}</span>
+                </div>
+                <div>
+                  <h5>Duración:</h5>
+                  <span>{length}</span>
+                </div>
+                <div>
+                  <h5>Temporada:</h5>
+                  <span>{season}</span>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
     </div>
   )
 }

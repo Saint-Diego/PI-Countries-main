@@ -6,7 +6,7 @@ const Country = ({id, flag, name, continent, population}) => {
     <div className="country">
       <div className="target">
         <img src={flag} alt={name} />
-        <span className="tooltiptext">Población {Intl.NumberFormat().format(population)} habitantes</span>
+        <span className="tooltiptext">Población &#8702; {Intl.NumberFormat().format(population)} habitantes</span>
       </div>
       <div className="detail">
         <h5>{name}</h5>
@@ -14,7 +14,7 @@ const Country = ({id, flag, name, continent, population}) => {
       </div>
       <div className="more-detail">
         <Link to={`/countries/${id}`}>
-          <button>Ver mas</button>
+          <button className="btn-second">Ver mas</button>
         </Link>
       </div>
     </div>

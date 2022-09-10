@@ -1,13 +1,13 @@
-div.disabled {
-  display: none;
-}
-
-div.active {
+.layout-header-nav {
   display: block;
 }
 
+.layout-header-nav.hide {
+  display: none;
+}
+
 .header {
-  background: linear-gradient(90deg, rgb(127, 221, 12), rgb(11, 90, 207));
+  background: linear-gradient(0deg, rgba(103, 148, 49, 0.74), rgba(151, 26, 26, 0.7));
   background-size: cover;
   width: 100%;
   min-height: 25vh;
@@ -29,4 +29,25 @@ div.active {
   font-weight: 400;
   color: #000;
   text-decoration: none;
+}
+
+.navbar .tabs {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tabs .nav-link.enabled {
+  color: #999;
+  pointer-events: none;
+}
+
+.layout-search.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-search.hide {
+  display: none;
 }

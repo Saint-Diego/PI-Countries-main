@@ -1,13 +1,23 @@
 .main-layout {
 	width: auto;
-	padding: 0 0 50px;
+	height: 225vh;
+	margin: 0 0 50px;
+}
+
+.countries, .loading-countries {
+	width: auto;
+	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+	grid-column-gap: 20px;
+	grid-row-gap: 30px;
+	justify-content: center;
+	align-content: flex-start;
 }
 
 .countries {
-	width: auto;
-	display: grid;
-	justify-content: center;
-	align-content: start;
 	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 20px;
+}
+
+.loading-countries {
+	grid-template-columns: 3fr;
 }
