@@ -9,7 +9,14 @@ const Filter = () => {
   const [option, setOption] = useState('');
   const [selected, setSelected] = useState('');
   const dispatch = useDispatch();
-  const { activities } = useSelector(countrySelector);
+  const { activities, show } = useSelector(countrySelector);
+
+  useEffect(() => {
+    if (!show) {
+      setOption('');
+      setSelected('');
+    }
+  }, [show]);
 
   useEffect(() => {
     dispatch(fetchActivities());

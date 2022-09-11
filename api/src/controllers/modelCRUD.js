@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Country, Op } = require('../db');
+const { Country, Activity, Op } = require('../db');
 
 const URL_API = 'https://restcountries.com/v3/all';
 
@@ -37,14 +37,18 @@ class ModelCRUD {
     try {
       if (name) {
         data = await this.getByName(name);
-        if (!data.length) res.status(404).send("Criterio de busqueda sin coincidencia");
+        if (!data.length) return res.status(404).send("Criterio de busqueda sin coincidencia");
       } else {
-        const dbCountries = await this.model.findAll();
-        const countries = (!dbCountries.length) ? await this.downloadCountries() : dbCountries;
-        const promise = await countries?.map(async (c) => await this.setActivities(c));
-        data = await Promise.all(promise);
+        const count = await this.model.count();
+        if (!count) data = await this.downloadCountries();
+        else data = await this.model.findAll({
+          include: [{
+            model: Activity,
+            as: 'activities'
+          }],
+        });
       }
-      res.send(data);
+      return res.send(data);
     } catch (error) {
       next(error);
     }
@@ -53,11 +57,14 @@ class ModelCRUD {
   getById = async (req, res, next) => {
     let id = (req.params) && req.params.idPais;
     try {
-      const result = await this.model.findByPk(id);
-      if (!result) res.status(404).send('País no encontrado');
-      else {
-        res.send(await this.setActivities(result));
-      }
+      const result = await this.model.findByPk(id, {
+        include: [{
+          model: Activity,
+          as: 'activities'
+        }],
+      });
+      if (!result) return res.status(404).send('País no encontrado');
+      return res.send(result);
     } catch (error) {
       next(error);
     }
@@ -69,12 +76,14 @@ class ModelCRUD {
         nameEs: {
           [Op.iLike]: `%${nameCountry}%`
         }
-      }
+      },
+      include: [{
+        model: Activity,
+        as: 'activities'
+      }]
     };
     try {
-      const dbCountries = await this.model.findAll(condition);
-      const promise = await dbCountries?.map(async (c) => await this.setActivities(c));
-      return await Promise.all(promise);
+      return await this.model.findAll(condition);
     } catch (error) {
       throw new TypeError(error.message);
     }
@@ -87,9 +96,9 @@ class ModelCRUD {
         where: {name},
         defaults: {difficulty, length, season}
       });
-      if (!created) res.send(`La actividad turística ${name} ya existe`);
+      if (!created) return res.send(`La actividad turística ${name} ya existe`);
       await this.transfer(opCountries, activity);
-      res.status(201).send('Activitidad creada correctamente');
+      return res.status(201).send('Activitidad creada correctamente');
     } catch (error) {
       next(error);
     }
@@ -108,9 +117,9 @@ class ModelCRUD {
 
   setActivities = async (country) => {
     try {
-      if (!country.getActivities) return {...country, activities: []};
-      const activities = await country.getActivities();
-      return {...country, activities};
+      const allActivities = await country.getActivities();
+      const activities = allActivities?.map((a) => a.toJSON());
+      return { ...country.toJSON(), activities};
     } catch (error) {
       throw new TypeError(error.message);
     }

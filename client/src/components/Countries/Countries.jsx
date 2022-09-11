@@ -22,7 +22,6 @@ const Countries = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-    console.log('countries',countries)
   }, [countries])
 
   const getPaginateData = () => {
@@ -58,9 +57,9 @@ const Countries = () => {
           <h3>Cargando...</h3>
           : 
           totalCountries ?
-          getPaginateData().map((data) => 
+          getPaginateData().map((data, index) => 
             <Country 
-              key={data.id} 
+              key={data.id * index} 
               id={data.id}
               flag={data.flag} 
               name={data.nameEn} 

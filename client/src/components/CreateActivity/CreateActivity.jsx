@@ -19,7 +19,7 @@ const CreateActivity = () => {
   const [tags, setTags] = useState([]);
   const history = useHistory();
   const refName = useRef(null);
-  const {countries} = useSelector(countrySelector);
+  const {copyCountries} = useSelector(countrySelector);
   const dispatch = useDispatch();
   
   // useEffect(() => {
@@ -27,7 +27,7 @@ const CreateActivity = () => {
   // }, [dispatch]);
 
   useEffect(() => {
-    if (!countries.length) history.push("/home");
+    if (!copyCountries.length) history.push("/home");
     refName.current.focus();
   }, []);
 
@@ -112,7 +112,7 @@ const CreateActivity = () => {
           <select className="form-control" name="countries" id="countries" value={selected} defaultValue="" onChange={handleChangeCountries}>
             <option hidden value="">-seleccione una opción-</option>
             {
-              countries.map(({id, nameEn}) => <option key={id} value={nameEn}>{nameEn}</option>)
+              copyCountries.map(({id, nameEn}) => <option key={id} value={nameEn}>{nameEn}</option>)
             }
           </select>
         </div>

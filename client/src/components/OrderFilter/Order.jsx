@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchOrderCountries } from '../../slices/index';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrderCountries, countrySelector } from '../../slices/index';
 
 const OrderFilter = () => {
   const [option, setOption] = useState('');
+  const { show } = useSelector(countrySelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!show) setOption('');
+  }, [show]);
 
   const handleChange = (e) => {
     let value = e.target.value;

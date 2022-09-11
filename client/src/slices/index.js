@@ -18,6 +18,9 @@ const countrySlice = createSlice({
     loadingCountries: (state) => {
       state.loading = true
     },
+    getCountriesFilter: (state, {payload}) => {
+      state.countries = payload
+    },
     getCountries: (state, {payload}) => {
       state.copyCountries = state.countries = payload
       state.loading = false
@@ -63,6 +66,7 @@ const countrySlice = createSlice({
 
 export const {
   loadingCountries,
+  getCountriesFilter,
   getCountries, 
   getCountry,
   getActivities,
@@ -140,7 +144,7 @@ export const fetchCountryById = (id) => async dispatch => {
 export const fetchCountryByName = (name) => async dispatch => {
   try {
     const {data} = await axios(`${URL_COUNTRY}?name=${name}`);
-    dispatch(getCountries(data));
+    dispatch(getCountriesFilter(data));
   } catch (e) {
     return showAlert('Opps!', e.response.data, 'error');
   }

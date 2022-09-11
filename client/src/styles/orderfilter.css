@@ -1,5 +1,6 @@
 .layout-advanced {
-  margin: 5px auto;
+  background: rgb(0 0 0 / 72%);
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,12 +10,18 @@
   display: none;
 }
 
-.layout-order {
-  margin: auto 5px;
-  border-right: 1px solid #76777c;
+.layout-advanced select {
+  border-radius: 5px;
 }
 
-.layout-filter {
+.layout-order, .layout-filter {
   margin: auto 5px;
-  border-left: 1px solid #76777c;
+}
+
+.layout-order div {
+  margin: 5px auto;
+}
+
+.layout-order div button.btn-second {
+  margin: 0 2px;
 }
