@@ -76,6 +76,8 @@ const CreateActivity = () => {
   return (
     <div className="container">
       <form className="form-activity" onSubmit={handleSubmit}>
+        <h1>Registro de Actividades Turísticas</h1>
+        <hr/>
         <div className="fields">
           <label htmlFor="name">Nombre:</label>
           <input className="form-control" 

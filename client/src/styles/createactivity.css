@@ -44,6 +44,8 @@ form.form-activity {
 
 .msg-error {
 	color: #ff0000;
+	font-family: inherit;
+	font-size: medium;
 }
 
 .msg-success {

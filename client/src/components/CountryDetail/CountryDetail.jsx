@@ -63,11 +63,11 @@ const CountryDetail = () => {
                 </div>
                 <div>
                   <h5>Dificultad:</h5>
-                  <span>{difficulty}</span>
+                  <span>{difficulty} pts</span>
                 </div>
                 <div>
                   <h5>Duración:</h5>
-                  <span>{duration}</span>
+                  <span>{duration} horas</span>
                 </div>
                 <div>
                   <h5>Temporada:</h5>
