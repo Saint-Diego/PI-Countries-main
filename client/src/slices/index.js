@@ -39,10 +39,10 @@ const countrySlice = createSlice({
       state.activities = payload
     },
     filterCountriesByContinent: (state, {payload}) => {
-      state.countries = state.copyCountries.filter((c) => c.continent === payload)
+      state.countries = state.copyCountries.slice().filter((c) => c.continent === payload)
     },
     filterCountriesByActivity: (state, {payload}) => {
-      state.countries = state.copyCountries.filter((c) => {
+      state.countries = state.copyCountries.slice().filter((c) => {
         const res = c.activities?.find(({name}) => name === payload)
         if (res) return c
         return false
@@ -51,18 +51,18 @@ const countrySlice = createSlice({
     sortCountriesByString: (state, {payload}) => {
       let paises = null
       if (payload === 'asc') {
-        paises = state.copyCountries.slice().sort((a, b) => a.nameEn.localeCompare(b.nameEn))
+        paises = state.countries.slice().sort((a, b) => a.nameEn.localeCompare(b.nameEn))
       } else {
-        paises = state.copyCountries.slice().sort((a, b) => b.nameEn.localeCompare(a.nameEn))
+        paises = state.countries.slice().sort((a, b) => b.nameEn.localeCompare(a.nameEn))
       }
       state.countries = paises
     },
     sortCountriesByInt: (state, {payload}) => {
       let paises = null
       if (payload === 'asc') {
-        paises = state.copyCountries.slice().sort((a, b) => a.population - b.population)
+        paises = state.countries.slice().sort((a, b) => a.population - b.population)
       } else {
-        paises = state.copyCountries.slice().sort((a, b) => b.population - a.population)
+        paises = state.countries.slice().sort((a, b) => b.population - a.population)
       }
       state.countries = paises
     },
