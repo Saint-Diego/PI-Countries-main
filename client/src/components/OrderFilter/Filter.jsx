@@ -68,7 +68,7 @@ const Filter = () => {
           }
         </select>
       </div>
-      <button className="btn-second" onClick={handleClick}>Aceptar</button>
+      <button className={`btn-second ${!selected ? 'enabled' : ''}`} onClick={handleClick}>Aceptar</button>
     </div>
   )
 }

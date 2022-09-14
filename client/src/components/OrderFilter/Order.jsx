@@ -33,8 +33,8 @@ const OrderFilter = () => {
           <option value="name">Nombre</option>
         </select>
       </div>
-      <button className="btn-second" name="asc" onClick={handleClick}>&#8639;</button>
-      <button className="btn-second" name="desc" onClick={handleClick}>&#8642;</button>
+      <button className={`btn-second ${!option ? 'enabled' : ''}`} name="asc" onClick={handleClick}>&#8639;</button>
+      <button className={`btn-second ${!option ? 'enabled' : ''}`} name="desc" onClick={handleClick}>&#8642;</button>
     </div>
   )
 }

@@ -27,6 +27,12 @@ button.btn-second:hover {
 	cursor: pointer;
 }
 
+button.btn-second.enabled {
+  background: #696969;
+	color: #999;
+	pointer-events: none;
+}
+
 .form-check {
   color: #212529;
   font-size: 1rem;
@@ -54,7 +60,7 @@ button.btn-second:hover {
 .form-control {
   display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 0.1rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -94,6 +100,7 @@ input:focus, input:active {
   min-width: 0;
   position: relative;
   flex: 1 1 auto;
+  padding-left: 20px;
   padding-right: 40px;
   border-radius: 20px;
   left: 20px;
