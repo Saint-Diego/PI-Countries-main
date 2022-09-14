@@ -50,6 +50,7 @@
 }
 
 .tabs .nav-link.enabled {
+  background: #696969;
   color: #999;
   pointer-events: none;
 }

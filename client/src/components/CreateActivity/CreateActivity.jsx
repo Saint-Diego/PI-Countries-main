@@ -8,7 +8,7 @@ import Tag from '../Tag/Tag';
 const newActivity = {
   name: '',
   difficulty: 1,
-  length: 1,
+  duration: 1,
   season: '',
   opCountries: [],
 };
@@ -37,7 +37,7 @@ const CreateActivity = () => {
 
   const handleChangeInput = (e) => {
     let name = e.target.name;
-    let value = (name === 'difficulty' || name === 'length') ? parseInt(e.target.value) : e.target.value;
+    let value = (name === 'difficulty' || name === 'duration') ? parseInt(e.target.value) : e.target.value;
     setActivity(prevActivity => ({...prevActivity, [name]: value}));
   };
 
@@ -89,12 +89,12 @@ const CreateActivity = () => {
             onChange={handleChangeInput}/>
         </div>
         <div className="fields">
-          <label htmlFor="length">Duración:</label>
+          <label htmlFor="duration">Duración (minutos):</label>
           <input className="form-control" type="number" 
-            name="length" 
-            id="length" 
+            name="duration" 
+            id="duration" 
             min="1" 
-            value={activity.length}
+            value={activity.duration}
             onChange={handleChangeInput}/>
         </div>
         <div className="fields">

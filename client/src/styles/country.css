@@ -56,9 +56,9 @@
 }
 
 .detail {
-	height: 25%;
+	height: 70px;
 }
 
-/* .more-detail {
-
-} */
+.more-detail {
+	vertical-align: middle;
+}

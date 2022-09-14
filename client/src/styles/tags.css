@@ -13,10 +13,3 @@
 .tags-input-container:empty {
   border: none;
 }
-
-.tags-input {
-  flex-grow: 1;
-  padding: .5em 0;
-  border: none;
-  outline: none;
-}
