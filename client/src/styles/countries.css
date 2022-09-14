@@ -7,20 +7,20 @@
 .countries, .loading-countries {
 	width: 80%;
 	margin: 0 auto;
+}
+
+.countries {
+	grid-template-columns: repeat(3, 1fr);
 	display: grid;
 	grid-template-rows: repeat(4, 1fr);
 	grid-column-gap: 20px;
 	grid-row-gap: 30px;
 	justify-items: center;
-	align-items: stretch;
-}
-
-.countries {
-	grid-template-columns: repeat(3, 1fr);
 }
 
 .loading-countries {
-	grid-template-columns: 3fr;
+	display: flex;
+	justify-content: center;
 }
 
 .loading-countries svg{

@@ -52,7 +52,7 @@ const Countries = () => {
           />  
         }
       </div>
-      <div className={`${totalCountries === 0 ? 'loading-countries' : 'countries'}`}>
+      <div className={`${totalCountries > 0 ? 'countries' : 'loading-countries'}`}>
         {
           loading ?
           <LoadingImage />
