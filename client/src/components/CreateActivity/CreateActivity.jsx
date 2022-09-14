@@ -17,7 +17,13 @@ const newActivity = {
 const CreateActivity = () => {
   const [activity, setActivity] = useState(newActivity);
   const [selected, setSelected] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState({
+    msgName: '',
+    msgDifficulty: '',
+    msgDuration: '',
+    msgSeason: '',
+    msgCountries: '',
+  });
   const [tags, setTags] = useState([]);
   const history = useHistory();
   const refName = useRef(null);
@@ -81,7 +87,8 @@ const CreateActivity = () => {
             onChange={handleChangeInput} />
         </div>
         {
-          error && <span className="msg-error">{error}</span>
+          error.msgName && <span className="msg-error">{error.msgName}</span>
+
         }
         <div className="fields">
           <label htmlFor="difficulty">Dificultad:</label>
@@ -93,15 +100,22 @@ const CreateActivity = () => {
             value={activity.difficulty}
             onChange={handleChangeInput}/>
         </div>
+        {
+          error.msgDifficulty && <span className="msg-error">{error.msgDifficulty}</span>
+        }
         <div className="fields">
-          <label htmlFor="duration">Duración (minutos):</label>
+          <label htmlFor="duration">Duración (horas):</label>
           <input className="form-control" type="number" 
             name="duration" 
             id="duration" 
             min="1" 
+            max="24"
             value={activity.duration}
             onChange={handleChangeInput}/>
         </div>
+        {
+          error.msgDuration && <span className="msg-error">{error.msgDuration}</span>
+        }
         <div className="fields">
           <label htmlFor="season">Temporada:</label>
           <select className="form-control" name="season" id="season" value={activity.season} onChange={handleChangeInput}>
@@ -112,6 +126,9 @@ const CreateActivity = () => {
             <option value="Primavera">Primavera</option>
           </select>
         </div>
+        {
+          error.msgSeason && <span className="msg-error">{error.msgSeason}</span>
+        }
         <div className="fields">
           <label htmlFor="countries">Países:</label>
           <select className="form-control" name="countries" id="countries" value={selected} onChange={handleChangeCountries}>
@@ -121,6 +138,9 @@ const CreateActivity = () => {
             }
           </select>
         </div>
+        {
+          error.msgCountries && <span className="msg-error">{error.msgCountries}</span>
+        }
         <div className={`tags-input-container ${!tags.length ? 'hide' : ''}`}>
           {
             tags.map((name, index) => <Tag key={index} name={name} onClick={removeTag} />)

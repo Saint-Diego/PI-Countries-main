@@ -13,7 +13,7 @@ form.form-activity {
 
 .fields {
 	display: flex;
-	margin: 5px auto;
+	margin: 20px auto;
 	text-align: left;
 	justify-content: flex-start;
 	align-items: center;
@@ -44,4 +44,8 @@ form.form-activity {
 
 .msg-error {
 	color: #ff0000;
+}
+
+.msg-success {
+	color: #00f735af;
 }

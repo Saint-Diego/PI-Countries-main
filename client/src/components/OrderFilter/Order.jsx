@@ -27,7 +27,7 @@ const OrderFilter = () => {
     <div className="layout-order">
       <div>
         <label htmlFor="order">Ordenar</label>
-        <select className="form-control" id="order" name="order" value={option} onChange={handleChange}>
+        <select className="form-select" id="order" name="order" value={option} onChange={handleChange}>
           <option hidden value="">-selecione una opción-</option>
           <option value="population">Población</option>
           <option value="name">Nombre</option>

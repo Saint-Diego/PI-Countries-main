@@ -46,14 +46,14 @@ const Filter = () => {
     <div className="layout-filter">
       <div>
         <label htmlFor="option">Filtrar</label>
-        <select className="form-control" id="option" name="option" value={option} onChange={handleChangeOption}>
+        <select className="form-select" id="option" name="option" value={option} onChange={handleChangeOption}>
           <option hidden value="">-selecione una opción-</option>
           <option value="continent">Continente</option>
           <option value="activity">Actividad</option>
         </select>
       </div>
       <div>
-        <select className="form-control" id="item" name="item" value={selected} onChange={handleChangeSelect}>
+        <select className="form-select" id="item" name="item" value={selected} onChange={handleChangeSelect}>
           <option hidden value="">-selecione una opción-</option>
           {
             option === 'continent' ?

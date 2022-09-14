@@ -4,6 +4,7 @@ import { fetchCountries, countrySelector } from '../../slices/index';
 import '../../styles/countries.css';
 import '../../styles/pagination.css';
 import Country from '../Country/Country';
+import LoadingImage from '../LoadingImage/LoadingImage';
 import Paginate from '../Paginate/Paginate';
 
 const FIRST_PAGE = 9;
@@ -54,7 +55,7 @@ const Countries = () => {
       <div className={`${totalCountries === 0 ? 'loading-countries' : 'countries'}`}>
         {
           loading ?
-          <h3>Cargando...</h3>
+          <LoadingImage />
           : 
           totalCountries ?
           getPaginateData().map((data) => 
