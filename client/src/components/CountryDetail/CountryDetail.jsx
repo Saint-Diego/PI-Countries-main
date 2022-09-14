@@ -18,6 +18,8 @@ const CountryDetail = () => {
   return (
     <div className="container">
       <div className="layout-country-detail">
+        <h1>Detalle General del País</h1>
+        <hr/>
         <img src={country.flag} alt={country.nameEn} />
         <div className="country-detail">
           <h4>Nombre</h4>

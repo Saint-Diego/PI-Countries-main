@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 
 .container {
-  background: url('../assets/wallpaper1280x720.jpg') center center no-repeat;
+  background: url('../assets/countries.jpg') center center no-repeat;
   /* background: #dde1e4a2; */
   background-size: cover;
 	width: 100%;
