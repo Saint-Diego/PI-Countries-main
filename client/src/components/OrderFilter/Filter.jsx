@@ -12,10 +12,7 @@ const Filter = () => {
   const { activities, show } = useSelector(countrySelector);
 
   useEffect(() => {
-    if (!show) {
-      setOption('');
-      setSelected('');
-    }
+    if (!show) resetFields();
   }, [show]);
 
   useEffect(() => {
@@ -37,20 +34,26 @@ const Filter = () => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(fetchFilterCountries(option, selected));
+    resetFields();
+  };
+
+  const resetFields = () => {
+    setOption('');
+    setSelected('');
   };
 
   return (
     <div className="layout-filter">
       <div>
-        <label htmlFor="option"></label>
-        <select className="form-control" id="option" name="option" defaultValue="" onClick={handleChangeOption}>
+        <label htmlFor="option">Filtrar</label>
+        <select className="form-control" id="option" name="option" value={option} onChange={handleChangeOption}>
           <option hidden value="">-selecione una opción-</option>
           <option value="continent">Continente</option>
           <option value="activity">Actividad</option>
         </select>
       </div>
       <div>
-        <select className="form-control" id="value" name="value" defaultValue="" onClick={handleChangeSelect}>
+        <select className="form-control" id="item" name="item" value={selected} onChange={handleChangeSelect}>
           <option hidden value="">-selecione una opción-</option>
           {
             option === 'continent' ?
@@ -59,8 +62,8 @@ const Filter = () => {
             )
             :
             option === 'activity' &&
-            activities.map(({id, name} ) => 
-              <option key={id} value={name}>{name}</option>
+            activities.map(({name},index) => 
+              <option key={index} value={name}>{name}</option>
             )
           }
         </select>

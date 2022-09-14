@@ -8,7 +8,9 @@ class ActivityController extends ModelCRUD {
 
   getActivities = async (req, res, next) => {
     try {
-      const result = await this.model.findAll();
+      const result = await this.model.findAll({
+        attributes: ['name']
+      });
       res.send(result.length ? result : []);
     } catch (error) {
       next(error);

@@ -9,6 +9,7 @@ export const initialState = {
   activities: [],
   show: false,
   loading: false,
+  path: '',
 };
 
 const countrySlice = createSlice({
@@ -17,6 +18,12 @@ const countrySlice = createSlice({
   reducers: {
     loadingCountries: (state) => {
       state.loading = true
+    },
+    showAdvanced: (state, {payload}) => {
+      state.show = payload
+    },
+    changePath: (state, {payload}) => {
+      state.path = payload
     },
     getCountriesFilter: (state, {payload}) => {
       state.countries = payload
@@ -35,10 +42,11 @@ const countrySlice = createSlice({
       state.countries = state.copyCountries.filter((c) => c.continent === payload)
     },
     filterCountriesByActivity: (state, {payload}) => {
-      const filter = state.copyCountries.map((c) => 
-        c.activities?.find(({name}) => name === payload)
-      )
-      state.countries = filter.filter((c) => c !== undefined)
+      state.countries = state.copyCountries.filter((c) => {
+        const res = c.activities?.find(({name}) => name === payload)
+        if (res) return c
+        return false
+      })
     },
     sortCountriesByString: (state, {payload}) => {
       let paises = null
@@ -58,14 +66,13 @@ const countrySlice = createSlice({
       }
       state.countries = paises
     },
-    showAdvanced: (state, {payload}) => {
-      state.show = payload
-    },
   }
 })
 
 export const {
   loadingCountries,
+  showAdvanced,
+  changePath,
   getCountriesFilter,
   getCountries, 
   getCountry,
@@ -74,7 +81,6 @@ export const {
   filterCountriesByActivity,
   sortCountriesByString,
   sortCountriesByInt,
-  showAdvanced,
 } = countrySlice.actions;
 
 export const countrySelector = state => state;
@@ -84,9 +90,27 @@ export default countrySlice.reducer;
 const URL_COUNTRY = 'http://localhost:3001/api/countries';
 const URL_ACTIVITY = 'http://localhost:3001/api/activities';
 
+export const changeOptionAdvanced = (value) => dispatch => {
+  try {
+    dispatch(showAdvanced(value));
+  } catch (e) {
+    return showAlert('Opps!', e.message, 'error');
+  }
+};
+
+export const changeLocation = (path) => dispatch => {
+  try {
+    dispatch(showAdvanced(false));
+    dispatch(changePath(path));
+  } catch (e) {
+    return showAlert('Opps!', e.message, 'error');
+  }
+};
+
 export const fetchCountries = () => async dispatch => {
   try {
     dispatch(loadingCountries());
+    dispatch(showAdvanced(false));
     const {data} = await axios(URL_COUNTRY);
     dispatch(getCountries(data));
   } catch (e) {
@@ -143,6 +167,7 @@ export const fetchCountryById = (id) => async dispatch => {
 
 export const fetchCountryByName = (name) => async dispatch => {
   try {
+    dispatch(showAdvanced(false));
     const {data} = await axios(`${URL_COUNTRY}?name=${name}`);
     dispatch(getCountriesFilter(data));
   } catch (e) {
@@ -167,11 +192,3 @@ export const fetchCreateActivity = (activity) => async () => {
     return showAlert('Opps!', e.response.data, 'error');
   }
 };
-
-export const changeOptionAdvanced = (value) => dispatch => {
-  try {
-    dispatch(showAdvanced(value));
-  } catch (e) {
-    return showAlert('Opps!', e.message, 'error');
-  }
-}

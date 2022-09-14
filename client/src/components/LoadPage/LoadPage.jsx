@@ -5,7 +5,7 @@ const LoadPage = () => {
   return (
     <div className="container-loading">
       <div className="center">
-        <h1>API COUNTRY</h1>
+        <h1>Bienvenido al portal Countries</h1>
         <Link to='/home'>
           <button className="btn btn-access">
 		        <div className="icono">

@@ -19,15 +19,15 @@ const OrderFilter = () => {
   
   const handleClick = (e) => {
     e.preventDefault();
-    let sort = e.target.name;
-    dispatch(fetchOrderCountries(option, sort));
+    dispatch(fetchOrderCountries(option, e.target.name));
+    setOption('');
   };
 
   return (
     <div className="layout-order">
       <div>
-        <label htmlFor="order"></label>
-        <select className="form-control" id="order" name="order" defaultValue="" onClick={handleChange}>
+        <label htmlFor="order">Ordenar</label>
+        <select className="form-control" id="order" name="order" value={option} onChange={handleChange}>
           <option hidden value="">-selecione una opción-</option>
           <option value="population">Población</option>
           <option value="name">Nombre</option>

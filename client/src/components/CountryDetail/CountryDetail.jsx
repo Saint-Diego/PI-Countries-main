@@ -9,6 +9,7 @@ const CountryDetail = () => {
   const { idPais } = useParams();
   const dispatch = useDispatch();
   const { country } = useSelector(countrySelector);
+  const totalActivities = country.activities?.length;
 
   useEffect(() => {
     dispatch(fetchCountryById(idPais));
@@ -50,9 +51,10 @@ const CountryDetail = () => {
         <div className="title-activity">
           <h4>Actividades turísticas:</h4>
         </div>
-        <div className="layout-activity">
+        <div className={`${totalActivities === 0 ? 'not-activities' : 'layout-activity'}`}>
           {
-            country.activities?.map(({id, name, difficulty, length, season}) => 
+            totalActivities ?
+            country.activities?.map(({id, name, difficulty, duration, season}) => 
               <div key={id} className="layout-country-activity">
                 <img src={imageCard} alt="thumbnails.png"/>
                 <div>
@@ -65,7 +67,7 @@ const CountryDetail = () => {
                 </div>
                 <div>
                   <h5>Duración:</h5>
-                  <span>{length}</span>
+                  <span>{duration}</span>
                 </div>
                 <div>
                   <h5>Temporada:</h5>
@@ -73,6 +75,8 @@ const CountryDetail = () => {
                 </div>
               </div>
             )
+            :
+            <h5>- Sin actividades -</h5>
           }
         </div>
       </div>

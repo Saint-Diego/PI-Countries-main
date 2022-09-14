@@ -8,8 +8,9 @@ const OrderFilter = () => {
   const { show } = useSelector(countrySelector);
 
   return (
-    <div className={`layout-advanced ${!show ? 'hide' : ''}`}>
+    <div className={`layout-advanced ${show ? '' : 'hide'}`}>
       <Order />
+      <hr/>
 			<Filter />
     </div>
   )

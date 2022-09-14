@@ -29,7 +29,7 @@ const CreateActivity = () => {
   useEffect(() => {
     if (!copyCountries.length) history.push("/home");
     refName.current.focus();
-  }, []);
+  }, [copyCountries.length, history]);
 
   useEffect(() => {
     setActivity(prevActivity => ({...prevActivity, opCountries: tags}));
@@ -99,7 +99,7 @@ const CreateActivity = () => {
         </div>
         <div className="fields">
           <label htmlFor="season">Temporada:</label>
-          <select className="form-control" name="season" id="season" value={activity.season}  defaultValue="" onChange={handleChangeInput}>
+          <select className="form-control" name="season" id="season" value={activity.season} onChange={handleChangeInput}>
             <option hidden value="">-seleccione un item-</option>
             <option value="Verano">Verano</option>
             <option value="Otoño">Otoño</option>
@@ -109,7 +109,7 @@ const CreateActivity = () => {
         </div>
         <div className="fields">
           <label htmlFor="countries">Países:</label>
-          <select className="form-control" name="countries" id="countries" value={selected} defaultValue="" onChange={handleChangeCountries}>
+          <select className="form-control" name="countries" id="countries" value={selected} onChange={handleChangeCountries}>
             <option hidden value="">-seleccione una opción-</option>
             {
               copyCountries.map(({id, nameEn}) => <option key={id} value={nameEn}>{nameEn}</option>)

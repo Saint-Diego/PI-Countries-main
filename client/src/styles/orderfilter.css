@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.layout-advanced hr {
+  height: 110px;
+  width: 1px;
+  margin: auto 5px;
+  border: none;
+  border-left: 1px solid #c3c3c3;
+  box-shadow: 0 0 1px #c9c9c9;
+}
+
 .layout-advanced.hide {
   display: none;
 }
@@ -18,10 +27,17 @@
   margin: auto 5px;
 }
 
-.layout-order div {
+.layout-order label, .layout-filter label {
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+.layout-order div, .layout-filter div {
   margin: 5px auto;
 }
 
-.layout-order div button.btn-second {
+.layout-order button.btn-second {
   margin: 0 2px;
+  padding: 5px 2px;
 }

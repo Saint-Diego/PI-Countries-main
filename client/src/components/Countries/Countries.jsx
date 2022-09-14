@@ -57,16 +57,16 @@ const Countries = () => {
           <h3>Cargando...</h3>
           : 
           totalCountries ?
-          getPaginateData().map((data, index) => 
+          getPaginateData().map((data) => 
             <Country 
-              key={data.id * index} 
+              key={data.id} 
               id={data.id}
               flag={data.flag} 
               name={data.nameEn} 
               continent={data.continent} 
               population={data.population}/>
           )
-          : <h3>No hay países para mostrar</h3>
+          : <h3>- No hay países para mostrar -</h3>
         }
       </div>
     </div>

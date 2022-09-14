@@ -3,6 +3,7 @@
 	width: auto;
 	margin: 15px auto 50px;
 	padding: 15px;
+	border-radius: 5px;
 }
 
 .layout-country-detail hr {
@@ -26,6 +27,10 @@
 
 .country-detail h4 {
 	margin: auto 0;
+}
+
+.not-activities {
+	display: block;
 }
 
 .layout-activity {

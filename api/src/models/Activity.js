@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
     },
     name: DataTypes.STRING,
     difficulty: DataTypes.INTEGER,
-    length: DataTypes.INTEGER,
+    duration: DataTypes.INTEGER,
     season: DataTypes.STRING,
   },
   {

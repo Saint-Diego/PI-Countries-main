@@ -90,11 +90,11 @@ class ModelCRUD {
   };
 
   create = async (req, res, next) => {
-    const {name, difficulty, length, season, opCountries} = req.body;
+    const {name, difficulty, duration, season, opCountries} = req.body;
     try {
       const [activity, created] = await this.model.findOrCreate({
         where: {name},
-        defaults: {difficulty, length, season}
+        defaults: {difficulty, duration, season}
       });
       if (!created) return res.send(`La actividad turística ${name} ya existe`);
       await this.transfer(opCountries, activity);

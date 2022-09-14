@@ -1,10 +1,11 @@
 import Countries from '../Countries/Countries';
 import OrderFilter from '../OrderFilter/OrderFilter';
+import '../../styles/home.css';
 
 const Home = () => {
   return (
     <div className="container">
-      <div>
+      <div className="home">
         <OrderFilter />
         <Countries />
       </div>

@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
 .container {
-  background: fixed url('../assets//countries.jpg') no-repeat;
+  background: url('../assets/wallpaper1280x720.jpg') center center no-repeat;
+  /* background: #dde1e4a2; */
   background-size: cover;
 	width: 100%;
 	margin: 0 auto;
@@ -34,6 +38,7 @@ button.btn-second:hover {
 
 .form-check label {
   margin: 0 5px;
+  color: #fff;
 }
 
 .form-select {
