@@ -10,14 +10,6 @@
 	justify-content: center;
 }
 
-h1 {
-	font-family: 'Prompt', sans-serif;
-}
-
-h2, h3, h4, h5, h6, label, input, span, select, button, a {
-	font-family: 'Roboto', sans-serif;
-}
-
 .center {
 	width: 50%;
 }

@@ -12,6 +12,14 @@
   align-items: flex-start;
 }
 
+h1 {
+	font-family: 'Prompt', sans-serif;
+}
+
+h2, h3, h4, h5, h6, label, input, span, select, button, a, p {
+	font-family: 'Roboto', sans-serif;
+}
+
 button.btn-second {
 	background: linear-gradient(90deg, rgba(94,93,93,1) 0%, rgba(130,130,130,0.97) 38%, rgba(128,128,128,0.95) 47%, rgba(125,120,120,0.96) 57%, rgba(77,73,73,1) 100%);
 	color: #d4d2cf;

@@ -1,6 +1,9 @@
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <p>Este es aplicación creada en ReactJS, Redux, Express y PostgresQl</p>
+      <p>Copyright &#169; By Diego López Beltrán</p>
+    </div>
   )
 }
 
