@@ -13,7 +13,6 @@
 }
 
 button.btn-second {
-	background: rgb(94,93,93);
 	background: linear-gradient(90deg, rgba(94,93,93,1) 0%, rgba(130,130,130,0.97) 38%, rgba(128,128,128,0.95) 47%, rgba(125,120,120,0.96) 57%, rgba(77,73,73,1) 100%);
 	color: #d4d2cf;
 	font-weight: bold;
@@ -23,7 +22,6 @@ button.btn-second {
 }
 
 button.btn-second:hover {
-	background: rgb(208,0,0);
 	background: linear-gradient(90deg, rgba(208,0,0,1) 0%, rgba(205,60,60,0.97) 38%, rgba(207,61,61,0.95) 47%, rgba(187,52,52,0.96) 57%, rgba(103,1,1,1) 100%);
 	color: rgb(175 175 175);
 	cursor: pointer;
@@ -72,8 +70,9 @@ button.btn-second:hover {
 }
 
 input:focus, input:active {
-  border-color: red;
+  border: 1px solid rgba(0, 162, 255, 0.562);
   outline: none;
+  box-shadow: 0 0 5px #979797;
 }
 
 .form-inline {

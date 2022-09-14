@@ -11,6 +11,12 @@ form.form-activity {
 	padding: 5px 10px;
 }
 
+.form-activity button.btn-second.enabled {
+	background: #696969;
+	color: #999;
+	pointer-events: none;
+}
+
 .fields {
 	display: flex;
 	margin: 5px auto;
@@ -40,4 +46,8 @@ form.form-activity {
 
 .tags-input-container.hide {
 	visibility: hidden;
+}
+
+.msg-error {
+	color: #ff0000;
 }

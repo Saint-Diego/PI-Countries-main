@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchCreateActivity, countrySelector } from '../../slices/index';
 import '../../styles/createactivity.css';
+import validatorFields from '../../Validate/validator';
 import Tag from '../Tag/Tag';
 
 const newActivity = {
@@ -16,20 +17,21 @@ const newActivity = {
 const CreateActivity = () => {
   const [activity, setActivity] = useState(newActivity);
   const [selected, setSelected] = useState('');
+  const [error, setError] = useState('');
   const [tags, setTags] = useState([]);
   const history = useHistory();
   const refName = useRef(null);
   const {copyCountries} = useSelector(countrySelector);
   const dispatch = useDispatch();
   
-  // useEffect(() => {
-  //   dispatch(fetchCountries());
-  // }, [dispatch]);
-
   useEffect(() => {
     if (!copyCountries.length) history.push("/home");
     refName.current.focus();
   }, [copyCountries.length, history]);
+
+  useEffect(() => {
+    setError(validatorFields(activity));
+  }, [activity]);
 
   useEffect(() => {
     setActivity(prevActivity => ({...prevActivity, opCountries: tags}));
@@ -78,6 +80,9 @@ const CreateActivity = () => {
             value={activity.name}
             onChange={handleChangeInput} />
         </div>
+        {
+          error && <span className="msg-error">{error}</span>
+        }
         <div className="fields">
           <label htmlFor="difficulty">Dificultad:</label>
           <input className="form-control" type="number"
@@ -122,7 +127,7 @@ const CreateActivity = () => {
           }
         </div>
         <div>
-          <button type="submit" className="btn-second">Crear</button>
+          <button type="submit" className={`btn-second ${error ? 'enabled' : ''}`}>Crear</button>
         </div>
       </form>
     </div>
