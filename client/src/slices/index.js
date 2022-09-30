@@ -29,7 +29,7 @@ const countrySlice = createSlice({
       state.countries = payload
     },
     getCountries: (state, {payload}) => {
-      state.copyCountries = state.countries = payload
+      state.countries = state.copyCountries = payload
       state.loading = false
     },
     getCountry: (state, {payload}) => {

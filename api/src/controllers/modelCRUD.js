@@ -96,7 +96,7 @@ class ModelCRUD {
         where: {name},
         defaults: {difficulty, duration, season}
       });
-      if (!created) return res.send(`La actividad turística ${name} ya existe`);
+      if (!created) return res.status(400).send(`La actividad turística ${name} ya existe`);
       await this.transfer(opCountries, activity);
       return res.status(201).send('Activitidad creada correctamente');
     } catch (error) {

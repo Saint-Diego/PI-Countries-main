@@ -43,6 +43,10 @@ const CreateActivity = () => {
     setActivity(prevActivity => ({...prevActivity, opCountries: tags}));
   }, [tags]);
 
+  const sortCountries = () => {
+    return copyCountries.slice().sort((a, b) => a.nameEn.localeCompare(b.nameEn));
+  };
+
   const handleChangeInput = (e) => {
     let name = e.target.name;
     let value = (name === 'difficulty' || name === 'duration') ? parseInt(e.target.value) : e.target.value;
@@ -136,7 +140,7 @@ const CreateActivity = () => {
           <select className="form-control" name="countries" id="countries" value={selected} onChange={handleChangeCountries}>
             <option hidden value="">-seleccione una opción-</option>
             {
-              copyCountries.map(({id, nameEn}) => <option key={id} value={nameEn}>{nameEn}</option>)
+              sortCountries().map(({id, nameEn}) => <option key={id} value={nameEn}>{nameEn}</option>)
             }
           </select>
         </div>
