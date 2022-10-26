@@ -87,8 +87,8 @@ export const countrySelector = state => state;
 
 export default countrySlice.reducer;
 
-const URL_COUNTRY = 'http://localhost:3001/api/countries';
-const URL_ACTIVITY = 'http://localhost:3001/api/activities';
+const URL_COUNTRY = 'https://pi-countries-main-production-f93b.up.railway.app/api/countries';
+const URL_ACTIVITY = 'https://pi-countries-main-production-f93b.up.railway.app/api/activities';
 
 export const changeOptionAdvanced = (value) => dispatch => {
   try {
