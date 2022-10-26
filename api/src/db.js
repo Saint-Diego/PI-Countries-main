@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { dbUser, dbPassword, dbPort, dbHost, dbName } = require('./utils/config/index');
 
-const sequelize = new Sequelize(`postgres://${dbUser}:${dbPassword}@${dbHost}:${dbPort}/${dbName}`, {
+const sequelize = new Sequelize(`postgresql://${dbUser}:${dbPassword}@${dbHost}:${dbPort}/${dbName}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
